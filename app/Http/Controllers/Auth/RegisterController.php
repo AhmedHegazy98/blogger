@@ -34,10 +34,15 @@ class RegisterController extends Controller
      *
      * @return void
      */
+    protected $uploadPath ;
+
     public function __construct()
     {
+        $this->uploadPath=  public_path('upload');
         $this->middleware('guest');
     }
+
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -62,10 +67,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['password'])
         ]);
     }
 }
